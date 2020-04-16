@@ -1,47 +1,10 @@
 % !TEX encoding = UTF-8 Unicode 
-
-\documentclass[inzynier,druk]{dyplom}
+% !TeX spellcheck = pl_PL
+% http://wiki.languagetool.org/checking-la-tex-with-languagetool
+\documentclass{dyplom}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 %%
-\usepackage[toc]{appendix}
-\renewcommand{\appendixtocname}{Dodatki}
-\renewcommand{\appendixpagename}{Dodatki}
-
-% Głębokość numerowania sekcji /section /subsection /subsubsection ...
-\setcounter{secnumdepth}{4}
-
-% pakiet do składu listingów w razie potrzeby można odblokować możliwość numerowania linii lub zmienić wielkość czcionki w listingu
-\usepackage{minted}
-\setminted{breaklines,
-frame=lines,
-framesep=5mm,
-baselinestretch=1.1,
-fontsize=\small,
-%linenos
-}
-
-% nowe otoczenie do składania listingów
-\usepackage{float}
-\newfloat{listing}{htp}{lop}
-\floatname{listing}{Listing}
-\usepackage{chngcntr}
-\counterwithin{listing}{chapter}
-
-% patch wyrównujący spis listingów do lewego marginesu 
-%https://tex.stackexchange.com/questions/58469/why-are-listof-and-listoffigures-styled-differently
-\makeatletter
-\renewcommand*{\listof}[2]{%
-  \@ifundefined{ext@#1}{\float@error{#1}}{%
-    \expandafter\let\csname l@#1\endcsname \l@figure  % <- use layout of figure
-    \float@listhead{#2}%
-    \begingroup
-      \setlength\parskip{0pt plus 1pt}%               % <- or drop this line completely
-      \@starttoc{\@nameuse{ext@#1}}%
-    \endgroup}}
-\makeatother
-
-\usepackage{url}
 \usepackage{lipsum}
 
 % Dane o pracy
@@ -55,67 +18,46 @@ fontsize=\small,
 \krotkiestreszczenie{W pracy przedstawiono projekt aplikacji służącej do komunikacji z kosmitami, wykorzystujący framework SpaceDirect i bazę danych NoMySQL}
 \slowakluczowe{kosmici, NoMySQL, SpaceDirect, aplikacja mobilna}
 
+%todo na koniec sprawdzić czy nie zostały sieroty/wdowy na końcach stron/wierszy
+%todo na koniec zastąpić regexem: " ([a-z]) " na " $1~" i~" - " na "~- "
 \begin{document}
+    \sloppy %for words not to leak from right side of container
 
-\maketitle
+    \maketitle
+    \pagenumbering{gobble}
+    \input{chapters/ch_streszczenie}
+    \cleardoublepage
 
-% --- Strona ze streszczeniem i abstraktem ------------------------------------------------------------------
-\chapter*{Streszczenie} % po polsku
-% Wprowadzenie
-Celem pracy było opracowanie aplikacji służącej do komunikacji z kosmitami. Dostępne na rynku aplikacj e nie satysfakcjonowały autorki ze względu na brak istotnych funkcji takich jak obsługa przez telefon z systemem Android.
-% Sposób rozwiązania problemu
-W ramach pracy przygotowano aplikację komunikacyjną wykorzystującą framework SpaceDirect, przechowującą dane kontaktów w bazie danych MyNoSQL oraz udostępniającą swoje funkcje przez interfejs REST API.
-% Dodatkowe informacji o pracy
-Oprócz projektu aplikacji praca zawiera wyniki testów jednostkowych oraz testów użyteczności przeprowadzonych przez krewnych i znajomych królika.
-% Podsumowanie
-Przygotowana w ramach projektu inżynierskiego praca może zostać wykorzystana przez wszystkie osoby zainteresowane kontaktami z cywilizacjami pozaziemskimi.
+    \pdfbookmark{\contentsname}{toc}
+    \tableofcontents
+    \cleardoublepage
 
+    \pagenumbering{arabic}
+    \setlength{\parskip}{6pt}%
+    \input{chapters/ch_wstep}
 
-% Kilka sztuczek, żeby:
-% - Abstract pojawił się na tej samej stronie co Streszczenie
-% - Abstract nie pojawił się w spisie treści
-\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
-\begingroup
-\renewcommand{\cleardoublepage}{}
-\renewcommand{\clearpage}{}
-\chapter*{Abstract} % ...i to samo po angielsku
-The main goal of this thesis was development of\dots (\textit{please translate remaining part of Streszczenie into English}).
-\endgroup
-\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
-% --- Koniec strony ze streszczeniem i abstraktem -----------------------------------------------------------
+    \input{demo/instrukcja}
+    \input{demo/demo}
+    \input{chapters/ch_stan-wiedzy}
+    \input{chapters/ch_zalozenia-projektowe}
+    \input{chapters/ch_projekt}
+    \input{chapters/ch_implementacja}
+    \input{chapters/ch_testy}
 
-\tableofcontents
+    \input{chapters/ch_zakonczenie}
 
+    % W~pracy pojawią się tylko prace naprawdę cytowane.
+    % \nocite{*}
+    \cleardoublepage
+    \bibliography{literatura}
+    \bibliographystyle{dyplom}
 
-% Rozdział dołączony z zewnątrz
-\input{wstep}
+    \listnormal{\listoffigures}{\listfigurename}
+    \listnormal{\listoftables}{\listtablename}
 
+    \clearpage
+%    \listof{listing}{Spis kodów źródłowych}
+    \lstlistoflistings
 
-\input{rozdzial1}
-
-\input{rozdzial2}
-
-
-\input{zakonczenie}
-
-% W spisie pojawią się tylko pozycje cytowane w tekście, np.: \cite{aizawa_groundwater_2009}.
-\bibliography{literatura}
-\bibliographystyle{dyplom}
-
-
-\listoffigures
-
-\listof{listing}{Spis listingów}
-
-\listoftables
-
-\appendixpage
-\appendix
-%\addappheadtotoc
-
-\chapter{To powinien być dodatek}\label{Dod1}
-
-W dodatku umieszczamy elementy pracy o dużej objętości, które mogą utrudniać czytanie pracy. Przykładem może być lista dwudziestu sześciu scenariuszy przypadków użycia (jeśli autor chce wszystkie dwadzieścia sześć zamieścić w pracy). \lipsum[9-11]
-
-
+    \input{chapters/ch_dodatki}
 \end{document}

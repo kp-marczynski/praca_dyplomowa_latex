@@ -8,3 +8,7 @@ _minted-praca/
 *.out
 *.synctex(busy)
 *.toc
+*.iml
+*.log
+*.gz
+*.lol
