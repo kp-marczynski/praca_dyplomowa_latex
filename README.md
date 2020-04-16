@@ -17,4 +17,4 @@ Do skompilowania pracy został przygotowany skrypt bashowy:
     sh compile-tex.sh
 
 ## Demo
-Skompilowany szab
+Skompilowany szablon w [PDF](praca.pdf)
