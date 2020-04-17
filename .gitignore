@@ -1,3 +1,5 @@
+.idea
+*.iml
 _minted-praca/
 *.aux
 *.bbl
@@ -8,7 +10,6 @@ _minted-praca/
 *.out
 *.synctex(busy)
 *.toc
-*.iml
 *.log
 *.gz
 *.lol
