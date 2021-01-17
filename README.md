@@ -1,5 +1,7 @@
-# praca_inzynierska_latex
-Szablon pracy inżynierskiej dostosowanej do wymagań na Wydziale Informatyki i Zarządzania Politechniki Wrocławskiej.
+# praca_dyplomowa_latex
+Szablon pracy dyplomowej dostosowanej do wymagań 
+* na Wydziale Informatyki i Zarządzania Politechniki Wrocławskiej
+* na Wydziale Zarządzania Uniwersytetu Ekonomicznego we Wrocławiu
 
 W szablonie wykorzystano elementy pochodzące z szablonów różnych autorów:
 - Krzysztof Marczyński - dostosowanie szablonu do wymagań Wydziału Informatyki i Zarządzania w roku 2019/2020, dodanie przydatnych makr
