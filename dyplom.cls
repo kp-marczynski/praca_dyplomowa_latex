@@ -1,14 +1,14 @@
 \NeedsTeXFormat{LaTeX2e} % dla pełnej jasności
 \ProvidesClass{dyplom} % jedyny niezbędny element klasy :-)
 
-\LoadClass[12pt,twoside]{mwrep} % ładujemy klasę bazową, do opcji % drukowanie 2 stronne//todo twoside vs oneside
+\LoadClass[12pt,oneside]{mwrep} % ładujemy klasę bazową, do opcji % drukowanie 2 stronne//todo twoside vs oneside
 % podanych w dokumencie dodajemy 12pt
 
 \RequirePackage[OT4]{polski}      % odpowiednik \RequirePackage
 %\RequirePackage[utf8]{inputenc} % to właściwie powinno być na zewnątrz
 \RequirePackage{array,graphicx}
 
-\RequirePackage[a4paper,left=30mm,right=15mm,top=25mm,bottom=25mm]{geometry}
+\RequirePackage[a4paper,left=30mm,right=20mm,top=25mm,bottom=25mm]{geometry}
 
 \RequirePackage{tgtermes}
 \RequirePackage[absolute]{textpos} % to na potrzeby strony tytułowej
